@@ -1,0 +1,17 @@
+<h1>Welcome {{ guest.name }}</h1>
+
+<form id="form" action="{% url 'response' guest.id %}" method="post">
+{% csrf_token %}
+    <label>I will: </label>
+    <input type="radio" name="will_attend" id="yes" value="yes"/>
+    <label for="yes">regretfully accept</label>
+    <input type="radio" name="will_attend" id="no" value="no"/>
+    <label for="no">delightfully decline</label>
+    <br>
+    <label for="number_of_guests">Number of guests:</label>
+    <input type="textbox" name="number_of_guests" value=""/>
+    <br>
+    <br>
+    
+<input type="submit" value="Submit"/>
+</form>
