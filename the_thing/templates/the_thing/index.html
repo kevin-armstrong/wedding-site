@@ -1,7 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% if all_guests %}
     <ul>
     {% for guest in all_guests %}
-        <li><a href="/the_thing/{{ guest.id }}/">{{ guest.name }}</a></li>
+        <li><a href="{% url 'rsvp' guest.id %}">{{ guest.name }}</a></li>
     {% endfor %}
     </ul>
 {% endif %}
+
+{% endblock %}

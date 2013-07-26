@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <title>Kevin and Kayla's Wedding Site - {% block title %}{% endblock %}</title>
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'the_thing/style.css' %}" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            Kevin and Kayla's wedding site
+        </div>
+        <div class="navigation">
+            <ul id="navigation">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="/rsvp.html">RSVP (though this link is broken)</a></li>
+                <li><a href="{% url 'directions' %}">Directions</a></li>
+                <li><a href="{% url 'fun_stuff' %}">Fun Stuff</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <div id="footer">
+            Copyright 2013 Kevin Armstrong and Kayla Fang. This site was built with love and Python.
+        </div>
+    </div>
+</body>
+</html>

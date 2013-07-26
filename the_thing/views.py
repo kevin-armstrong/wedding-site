@@ -33,3 +33,13 @@ def response(request, user_id):
     guest.number_of_guests = request.POST['number_of_guests']
     guest.save()
     return HttpResponseRedirect(reverse('index'))
+
+def directions(request):
+    template = loader.get_template('the_thing/directions.html')
+    context = RequestContext( request )
+    return HttpResponse(template.render(context))
+    
+def fun_stuff(request):
+    template = loader.get_template('the_thing/fun_stuff.html')
+    context = RequestContext( request )
+    return HttpResponse(template.render(context))
