@@ -13,7 +13,9 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
+import os, sys,platform
+if platform.system() == "Linux":
+    sys.path.append('/home/ubuntu/webroot/wedding_site')
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use

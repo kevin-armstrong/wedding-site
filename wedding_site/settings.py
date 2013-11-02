@@ -1,4 +1,5 @@
 # Django settings for wedding_site project.
+import platform
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,10 +10,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+databasePathPrefix = '' if platform.system() == "Windows" else '/home/ubuntu/webroot/wedding_site/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'wedding_site/db/data.db',                      # Or path to database file if using sqlite3.
+        'NAME': databasePathPrefix + 'wedding_site/db/data.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
