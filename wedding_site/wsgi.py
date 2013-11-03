@@ -16,6 +16,8 @@ framework.
 import os, sys,platform
 if platform.system() == "Linux":
     sys.path.append('/home/ubuntu/webroot/wedding_site')
+elif platform.system() == "Windows":
+    sys.path.append('c:/code/wedding_site')
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
