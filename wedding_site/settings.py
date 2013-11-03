@@ -10,7 +10,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-databasePathPrefix = '' if platform.system() == "Windows" else '/home/ubuntu/webroot/wedding_site/'
+databasePathPrefix = 'c:/code/wedding_site/' if platform.system() == "Windows" else '/home/ubuntu/webroot/wedding_site/'
 
 DATABASES = {
     'default': {
