@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
+from smtplib import SMTP_SSL
 
 from the_thing.models import Guest
 
@@ -32,6 +33,13 @@ def response(request, user_id):
 
     guest.number_of_guests = request.POST['number_of_guests']
     guest.save()
+    
+    #uncomment in production
+    #send_email_notification(guest)
+    
+    if guest.name == "Tim Miller":
+        return HttpResponseRedirect('http://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        
     return HttpResponseRedirect(reverse('index'))
 
 def directions(request):
@@ -43,3 +51,27 @@ def fun_stuff(request):
     template = loader.get_template('the_thing/fun_stuff.html')
     context = RequestContext( request )
     return HttpResponse(template.render(context))
+
+def send_email_notification(guest):
+    smtp_server_name = "smtp.gmail.com"
+    smtp_username = "theshortestnameavailable@gmail.com"
+    smtp_password = "W3dding_"
+    
+    to_address = "kevin.t.armstrong@gmail.com"
+    message = make_message(guest)
+    smtp_server = SMTP_SSL(smtp_server_name)
+    smtp_server.login(smtp_username, smtp_password)
+    smtp_server.sendmail("from", to_address, message)
+    smtp_server.quit()
+    
+    return
+    
+def make_message(guest):
+    response = "yes" if guest.will_attend else "no"
+    message_body = guest.name + " just RSVPed " + response + ", with " + guest.number_of_guests + " guests."
+    
+    message = """From: Wedding Site
+To: Kevin Armstrong <kevin.t.armstrong@gmail.com>
+Subject: RSVP from """ + guest.name + "\n\n" + message_body
+    
+    return message

@@ -1,20 +1,49 @@
 {% extends 'base.html' %}
 
+{% block script %} 
+<script>
+    function on_will_attend(will_attend){
+        var fieldset = document.forms.rsvp_form.rsvp_details;
+        if(will_attend)
+        {
+            fieldset.style.visibility="visible";
+        }
+        else
+        {
+            fieldset.style.visibility="hidden";
+        }
+    }
+</script>
+{% endblock %}
+
 {% block title %}RSVP{% endblock %}
 
 {% block content %}
 <h1>Welcome {{ guest.name }}</h1>
 
-<form id="form" action="{% url 'response' guest.id %}" method="post">
+<form class="pure-form" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
 {% csrf_token %}
-    <label>I will: </label>
-    <input type="radio" name="will_attend" id="yes" value="yes"/>
-    <label for="yes">regretfully accept</label>
-    <input type="radio" name="will_attend" id="no" value="no"/>
-    <label for="no">delightfully decline</label>
+    <fieldset>
+    {% if guest.will_attend != None %}
+    <div id="already_rsvped_message">
+        You have already RSVPed. You may alter your response below.
+    </div>
+    {% endif %}
     <br>
-    <label for="number_of_guests">Number of guests:</label>
-    <input type="textbox" name="number_of_guests" value=""/>
+    <label>I will: </label><br>
+        <label for="yes">
+            <input type="radio" name="will_attend" id="yes" value="yes" {% if guest.will_attend == True %} checked {% endif %} onchange=on_will_attend(true) />
+            regretfully accept
+        </label>
+        <label for="no">
+            <input type="radio" name="will_attend" id="no" value="no" {% if guest.will_attend == False %} checked {% endif %} onchange=on_will_attend(false) />
+            delightfully decline
+        </label>
+    </fieldset>
+    <fieldset id="rsvp_details" name="rsvp_details" {% if guest.will_attend != True %} style="visibility: hidden;" {% endif %} >
+        <label for="number_of_guests">Number of guests:</label>
+        <input type="textbox" name="number_of_guests" value={{ guest.number_of_guests }} />
+    </fieldset>
     <br>
     <br>
     
