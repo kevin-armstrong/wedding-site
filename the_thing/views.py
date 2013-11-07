@@ -17,15 +17,34 @@ def will_attend(request, user_id):
     guest = Guest.objects.get(id=user_id)
     return HttpResponse("The user name is %s." % guest.name)
     
-
-def rsvp(request, user_id):
-    guest = Guest.objects.get(id=user_id)
-    template = loader.get_template('the_thing/rsvp.html')
-    context = RequestContext( request, {
-        'guest': guest,
-    })
-    return HttpResponse(template.render(context))
+def rsvp(request):
+    username = request.session.get('user','')
+    if username:
+        guests = Guest.objects.filter(name__startswith=username)
+        if guests:
+            guest = guests[0]
+            template = loader.get_template('the_thing/rsvp.html')
+            context = RequestContext( request, {
+                'guest': guest,
+            })
+            return HttpResponse(template.render(context))
     
+    template = loader.get_template('the_thing/login_required.html')
+    context = RequestContext( request )
+    return HttpResponse(template.render(context))
+
+def login(request, username):
+    if username:
+        request.session['user'] = username
+        
+    return rsvp(request)
+
+def logout(request):
+    request.session.clear()
+    template = loader.get_template('the_thing/index.html')
+    context = RequestContext( request )
+    return HttpResponse(template.render(context))
+
 def response(request, user_id):
     guest = Guest.objects.get(id=user_id)
     will_attend_string = request.POST['will_attend']
