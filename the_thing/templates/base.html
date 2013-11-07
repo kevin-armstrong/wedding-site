@@ -9,6 +9,7 @@
     {% load staticfiles %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'the_thing/style.css' %}" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
 </head>
 
 <body>
@@ -16,10 +17,10 @@
         <div id="header">
             Kevin and Kayla's wedding site
         </div>
-        <div class="navigation">
-            <ul id="navigation">
+        <div id="navigation" class="pure-menu pure-menu-open pure-menu-horizontal">
+            <ul>
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="/rsvp.html">RSVP (though this link is broken)</a></li>
+                <li><a href="{% url 'rsvp' %}">RSVP</a></li>
                 <li><a href="{% url 'directions' %}">Directions</a></li>
                 <li><a href="{% url 'fun_stuff' %}">Fun Stuff</a></li>
             </ul>
