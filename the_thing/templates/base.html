@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Kevin and Kayla's Wedding Site - {% block title %}{% endblock %}</title>
+    <title>Kevin and Kayla's Wedding Site - {{ page_title }}</title>
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
 
@@ -21,7 +21,8 @@
             <ul>
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'rsvp' %}">RSVP</a></li>
-                <li><a href="{% url 'directions' %}">Directions</a></li>
+				<li><a href="{% url 'event_details' %}">Event Details</a></li>
+                <li><a href="{% url 'area_info' %}">Area Info</a></li>
                 <li><a href="{% url 'fun_stuff' %}">Fun Stuff</a></li>
             </ul>
         </div>
