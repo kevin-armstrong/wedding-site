@@ -12,22 +12,13 @@ def index(request):
     
     return _render_template(request, current_function_name, { 'all_guests': all_guests })
 
-def _render_template(request, function_name, parameter_dictionary):
-    parameter_dictionary['page_title'] = _make_pretty_name(function_name)
-    template_name = 'the_thing/' + function_name + '.html'
-    template = loader.get_template(template_name)
-    context = RequestContext(request, parameter_dictionary)
-    return HttpResponse(template.render(context))
-
-def _make_pretty_name(function_name):
-    pretty_function_name = string.capwords(function_name.replace('_', ' '))
-    return pretty_function_name
-
 def rsvp(request):
     username = request.session.get('user','')
     if username:
+        #TODO: probably improve the matching logic
         guests = Guest.objects.filter(name__startswith=username)
         if guests:
+            #TODO: only match one guest?
             guest = guests[0]
             current_function_name = _get_calling_method_name()
             return _render_template(request, current_function_name, { 'guest': guest })
@@ -37,14 +28,12 @@ def rsvp(request):
 def login(request, username):
     if username:
         request.session['user'] = username
-        
-    return rsvp(request)
+ 
+    return HttpResponseRedirect(reverse('rsvp'))
 
 def logout(request):
     request.session.clear()
-    template = loader.get_template('the_thing/index.html')
-    context = RequestContext( request )
-    return HttpResponse(template.render(context))
+    return _render_template(request, 'index', {})    
 
 def response(request, user_id):
     guest = Guest.objects.get(id=user_id)
@@ -73,6 +62,17 @@ def fun_stuff(request):
 
 def _render_static_content(request, page_name):
     return _render_template(request, page_name, {})
+
+def _render_template(request, function_name, parameter_dictionary):
+    parameter_dictionary['page_title'] = _make_pretty_name(function_name)
+    template_name = 'the_thing/' + function_name + '.html'
+    template = loader.get_template(template_name)
+    context = RequestContext(request, parameter_dictionary)
+    return HttpResponse(template.render(context))
+
+def _make_pretty_name(function_name):
+    pretty_function_name = string.capwords(function_name.replace('_', ' '))
+    return pretty_function_name
 
 def _get_calling_method_name():
     return inspect.stack()[1][3]
