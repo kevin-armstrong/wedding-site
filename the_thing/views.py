@@ -41,6 +41,7 @@ def response(request, user_id):
     guest.will_attend = True if will_attend_string == "yes" else False
 
     guest.number_of_guests = request.POST['number_of_guests']
+    guest.dietary_restrictions = request.POST['dietary_restrictions']
     guest.save()
     
     #uncomment in production
@@ -93,7 +94,7 @@ def _send_email_notification(guest):
     
 def _make_message(guest):
     response = "yes" if guest.will_attend else "no"
-    message_body = guest.name + " just RSVPed " + response + ", with " + guest.number_of_guests + " guests."
+    message_body = guest.name + " just RSVPed " + response + ", with " + guest.number_of_guests + " guests. Dietary restrictions: " + guest.dietary_restrictions
     
     message = """From: Wedding Site
 To: Kevin Armstrong <kevin.t.armstrong@gmail.com>
