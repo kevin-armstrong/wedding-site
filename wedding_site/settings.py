@@ -12,8 +12,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-databasePathPrefix = 'c:/code/wedding_site/' if platform.system() == "Windows" else '/home/ubuntu/webroot/wedding_site/'
-
+if(environment == "production"):
+    databasePathPrefix = '/home/ubuntu/webroot/wedding_site/'
+elif(platform.system() == "Windows"):
+    databasePathPrefix = 'c:/code/wedding_site/'
+else:
+    databasePathPrefix = ''
+    
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
