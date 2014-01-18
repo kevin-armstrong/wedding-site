@@ -5,14 +5,14 @@ class Command(NoArgsCommand):
     help = "Seeds the guest list data"
     
     def handle_noargs(self, **options):
-        guest_list = ["Brad Armstrong"]
+        guest_list = ["Brad Armstrong", "Clay Viands", "Tim Miller", "Shan Li", "Bill Armstrong"]
         #, "George Price", "Gregory Price", "Gretchen Horton", "Betty Price", "Bob Armstrong", "Cynthia Graham",
         #"Kris Singleton", "Nolan Salisbury", "Tom Steinthal", "Todd Kuhns", "Ian Leue", "Larry Mark"]
 
         already_imported_guests = 0
         newly_imported_guests = 0
         for guest_name in guest_list:
-            guest = Guest.objects.filter(name__iexact="Brad Armstrong")
+            guest = Guest.objects.filter(name__iexact=guest_name)
             if guest:
                 already_imported_guests += 1
             else:
