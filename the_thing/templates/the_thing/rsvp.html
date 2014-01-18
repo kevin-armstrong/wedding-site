@@ -31,14 +31,17 @@
     {% endif %}
     <br>
     <label>I will: </label><br>
+		<div class="details">
         <label for="yes">
             <input type="radio" name="will_attend" id="yes" value="yes" {% if guest.will_attend == True %} checked {% endif %} onchange=on_will_attend(true) />
             regretfully accept
         </label>
+		<br/>
         <label for="no">
             <input type="radio" name="will_attend" id="no" value="no" {% if guest.will_attend == False %} checked {% endif %} onchange=on_will_attend(false) />
             delightfully decline
         </label>
+		</div>
     </fieldset>
     <fieldset id="rsvp_details" name="rsvp_details" {% if guest.will_attend != True %} style="visibility: hidden;" {% endif %} >
         <label for="number_of_guests">Number of guests:</label>
@@ -48,8 +51,7 @@
     </fieldset>
     <br>
     <br>
-    
-<input type="submit" value="Submit"/>
+<input type="submit" value="Submit" class="pure-button"/>
 </form>
 
 {% endblock %}

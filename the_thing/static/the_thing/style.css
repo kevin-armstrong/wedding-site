@@ -1,84 +1,151 @@
+/*
+color scheme plumWine
+
+sage #C8C9BD
+yellow #FFE18B
+tan #E5D1AC
+plum #5C2B35
+purple #382B35
+black #15191C
+
+*/
+
 @font-face
 {
 font-family: kayla;
 /*src: url('http://www.w3schools.com/css3/Sansation_Light.ttf');*/
-src: url('Kayla5.ttf');
+src: url('brandywi.ttf');
 } 
     
+body{
+	background-color: white;
+	font-family: calibri;
+}
+
+a {
+	font-weight:bold;
+	color:#382B35;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
 
 div#wrapper {
- /*   background: url("../img/layout/wrap_bg.jpg") repeat-y scroll 0 0 transparent;*/
-    border-style: solid;
-    border-width: 1px;
-    border-color: lightgrey;
+
     margin: 0 auto;
     max-width: 900px;
     width: 100%;
     padding: 2%;
-/*    font-family: kayla;*/
+	background-color: white;
 }
 
 div#content {
-    /*background: url("../img/layout/header_bottom.jpg") repeat-x scroll center top transparent;*/
-    /*float: left;*/
     padding: 2em 0 0;
     width: 100%;
+	min-height: 500px;
 }
 
-div#footer {
-    font-size: .65em;
-    width: 100%;
-    text-align: center;
-    padding-top: 10em;
-    /*margin-left:auto;
-    margin-right:auto;
-    display: block;*/
+div.footer {
+	text-align: center;
+	width:100%;
+	padding: 0 0 2em 0;
+	font-size: 0.65em;
 }
 
-/* Navigation + Actions (Actions for logged in users) */
-
-ul#navigation,
-ul#actions {
-    float: left;
-    width: 99%;
-    background: #092e20;    
-    border-top: 1px solid #a2af23;
-    border-bottom: 1px solid #a2af23;
-    padding: 0 0 0 1%;
-    list-style-type: none;
-    font-weight: bold;
+div.header {
+	text-align: center;
+	width:100%;
+	position:fixed;
+	background-color: #5C2B35;
+	opacity:0.7;
+	filter:alpha(opacity=70); /* For IE8 and earlier */
 }
 
-ul#navigation li,
-ul#actions li {
-    float: left;
-    padding: .2em .5em;
+div#navigation {
+	text-align: center;
 }
 
-ul#navigation a,
-ul#actions a {
-    display: block;
-    color: #d2af23;
-    text-decoration: none;
-}
-ul#navigation a:hover,
-ul#actions a:hover { color: #fff; }
-
-ul#actions {
-    float: right;
-    background: #3b744e url(../img/layout/header_bottom.jpg) repeat-x top;
-    border: 0;
-    margin: -2.3em 0 0 0;
-    padding: 0 1% 0 0;
-    font-size: 85%;
+div.details {
+    padding: 0 0 0 3em;
 }
 
-ul#actions li {
-    float: right;
+div.sub {
+	font-size: 0.85em;
+	font-style: italic;
+	
+}
+
+div.main-nav {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+div.main-nav li
+{
+	display: inline;
+	padding: 0 25px 0 25px;
+}
+
+div.main-nav li a
+{
+	color: #FFFFFF;
+	text-decoration: none;
+	text-transform:lowercase;
+	font-size: 1.1em;
+	font-weight: 100;
+}
+
+div.main-nav li a:hover
+{
+	color: #C8C9BD;
+}
+
+span.accent {
+	color: #5C2B35;
+}
+
+span.small {
+	font-size: 0.7em;
+}
+
+h3 {
+	text-align: center;
+	color: #382B35;
+}
+
+h5 {
+	color: #5C2B35
+}
+
+div.weddingparty {
+	text-align: left;
+}
+
+ul.weddingparty {
+	list-style-type: none;
+}
+
+ul.weddingparty li  {
+	color: #382B35;
 }
 
 img#extrapolatingComic {
     margin-left:auto;
     margin-right:auto;
     display: block;
+}
+img#intro {
+	margin-left:auto;
+	margin-right:auto;
+	max-height: 200px;
+	border: 1px solid gray;
+}
+img.main {
+	margin-left:auto;
+	margin-right:auto;
+	max-height: 400px;
+	border: 1px solid gray;
 }

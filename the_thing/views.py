@@ -61,6 +61,9 @@ def event_details(request):
 def fun_stuff(request):
 	return _render_static_content(request, _get_calling_method_name())
 
+def wedding_party(request):
+	return _render_static_content(request, _get_calling_method_name())
+
 def _render_static_content(request, page_name):
     return _render_template(request, page_name, {})
 

@@ -13,27 +13,47 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="header">
-            Kevin and Kayla's wedding site
-        </div>
-        <div id="navigation" class="pure-menu pure-menu-open pure-menu-horizontal">
-            <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'rsvp' %}">RSVP</a></li>
+	<div class="header">
+		<div class="main-nav">
+			<ul>
+				<li><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
 				<li><a href="{% url 'event_details' %}">Event Details</a></li>
-                <li><a href="{% url 'area_info' %}">Area Info</a></li>
-                <li><a href="{% url 'fun_stuff' %}">Fun Stuff</a></li>
-            </ul>
-        </div>
+				<li><a href="{% url 'wedding_party' %}">Wedding Party</a></li>
+				<li><a href="{% url 'area_info' %}">Area Info</a></li>
+				<li><a href="{% url 'fun_stuff' %}">Fun</a></li>
+			</ul>
+		</div>
+	</div> <!--end header -->
 
-        <div id="content">
-            {% block content %}{% endblock %}
-        </div>
-        
-        <div id="footer">
-            Copyright 2013 Kevin Armstrong and Kayla Fang. This site was built with love and Python.
-        </div>
-    </div>
+	<div id="wrapper">
+		
+		<div id="content">
+			{% block content %}{% endblock %}
+		
+		</div>
+	</div> <!--end wrapper -->
+	<div class="footer">
+	   &copy; Copyright {% now "Y" %} Kevin Armstrong and Kayla Fang. This site was built with love and Python.
+	</div>
 </body>
 </html>
+
+<script>
+YUI({
+    classNamePrefix: 'pure'
+}).use('gallery-sm-menu', function (Y) {
+
+    var horizontalMenu = new Y.Menu({
+        container         : '#demo-horizontal-menu',
+        sourceNode        : '#std-menu-items',
+        orientation       : 'horizontal',
+        hideOnOutsideClick: false,
+        hideOnClick       : false
+    });
+
+    horizontalMenu.render();
+    horizontalMenu.show();
+
+});
+</script>
