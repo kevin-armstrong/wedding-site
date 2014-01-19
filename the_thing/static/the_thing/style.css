@@ -9,14 +9,19 @@ purple #382B35
 black #15191C
 
 */
+
+@font-face {
+	font-family: traveling-typewriter;
+	src: url('SmithyXT-Regular-v2-2.ttf');
+}
     
 body{
 	background-color:#5C2B35;
-	background-image:url('bg1.JPG');
+	background-image:url('bg2.PNG');
 	background-size:100%;
 	background-attachment:fixed;
 	background-repeat: no-repeat;
-	font-family: calibri;
+	font-family: traveling-typewriter;
 	overflow:hidden;
 	color: #C8C9BD;
 	padding:0;
@@ -37,19 +42,32 @@ div#wrapper {
 	margin-left: auto;
 	margin-right: 0;
     max-width: 900px;
-	min-height: 500px;
+	min-height: 550px;
     width: 100%;
-    padding: 0 10px 0 0;
+    padding: 0 0 0 0;
 	background-color: #5C2B35;
 	border: 1px solid #382B35;
-	opacity:0.95;
-	filter:alpha(opacity=95); /* For IE8 and earlier */
+	opacity:0.9;
+	filter:alpha(opacity=90); /* For IE8 and earlier */
+}
+
+div#intropane {
+margin: 0;
+padding: 0;
+width: 100%;
+text-align: center;
+}
+
+div#dialogue {
+	width: 400px;
+	text-align: left;
+	font-size: 0.8em;
 }
 
 div#content {
     padding: 10px;
     width: 100%;
-	font-size: 1em;
+	font-size: 0.8em;
 }
 
 div#already_rsvped_message{
@@ -81,8 +99,8 @@ div.header {
 	color: #382B35;
 	top: 0;
 	left: 0;
-	opacity:0.8;
-	filter:alpha(opacity=80); /* For IE8 and earlier */
+	opacity:0.7;
+	filter:alpha(opacity=70); /* For IE8 and earlier */
 }
 
 div.omni {
@@ -95,15 +113,15 @@ div.footer {
 	width:100%;
 	padding: 0 0 0 0;
 	background-color: white;/*#5C2B35;*/
-	opacity:0.9;
-	filter:alpha(opacity=90); /* For IE8 and earlier */
+	opacity:0.7;
+	filter:alpha(opacity=70); /* For IE8 and earlier */
 	position:fixed;
 	bottom: 0px;
 	left: 0;
 }
 
 div.copyright {
-	font-size: 0.8em;
+	font-size: 0.6em;
 }
 
 /* NAVIGATION */
@@ -140,7 +158,7 @@ div.main-nav ul li a
 	color: #5C2B35;
 	text-decoration: none;
 	text-transform:lowercase;
-	font-size: 1.0em;
+	font-size: 0.8em;
 	font-weight: 100;
 	margin: 0 55px 0 55px;
 	padding: 10px 0 10px 0;
@@ -153,8 +171,6 @@ div.main-nav ul li:hover a
 
 div.main-nav ul li:hover > ul {
 	display:block;
-	opacity:0.9;
-	filter:alpha(opacity=90); /* For IE8 and earlier */
 	margin: 0;
 }
 
@@ -230,15 +246,11 @@ img#extrapolatingComic {
     margin-right:auto;
     display: block;
 }
-img#intro {
-	margin-left:auto;
-	margin-right:auto;
-	max-height: 200px;
-	border: 1px solid gray;
-}
+
 img.main {
-	margin: 0;
-	padding: 0;
+	display: inline-block;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
@@ -271,6 +283,8 @@ input.submit-rsvp
 	color: white;
 	border: 1px solid white;
 	background-color: #382B35;
+	font-family: traveling-typewriter;
+	padding: 10px 20px 10px 20px;
 }
 
 input.submit-rsvp:hover
