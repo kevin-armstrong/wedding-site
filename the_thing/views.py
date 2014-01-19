@@ -40,6 +40,12 @@ def response(request, user_id):
     will_attend_string = request.POST['will_attend']
     guest.will_attend = True if will_attend_string == "yes" else False
 
+    if "will_attend_brunch" in request.POST:
+        guest.will_attend_brunch = True if request.POST['will_attend_brunch'] == "yes" else False
+    
+    if "will_attend_rehersal_dinner" in request.POST:
+        guest.will_attend_rehersal_dinner = True if request.POST['will_attend_rehersal_dinner'] == "yes" else False
+
     guest.number_of_guests = request.POST['number_of_guests']
     guest.dietary_restrictions = request.POST['dietary_restrictions']
     guest.save()

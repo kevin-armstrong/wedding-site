@@ -2,9 +2,11 @@
 
 {% block script %} 
 <script>
-    function on_will_attend(will_attend){
+    function on_attendance_change(){
         var fieldset = document.forms.rsvp_form.rsvp_details;
-        if(will_attend)
+        if($('input[name = "will_attend"]:checked').val() == "yes" ||
+            $('input[name = "will_attend_brunch"]:checked').val() == "yes" ||
+            $('input[name = "will_attend_rehersal_dinner"]:checked').val() == "yes")
         {
             fieldset.style.visibility="visible";
         }
@@ -24,30 +26,64 @@
 <form class="pure-form" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
 {% csrf_token %}
     <fieldset>
-    {% if guest.will_attend != None %}
-    <div id="already_rsvped_message">
-        You have already RSVPed. You may alter your response below.
-    </div>
-    {% endif %}
-    <br>
-    <label>I will: </label><br>
-		<div class="details">
-        <label for="yes">
-            <input type="radio" name="will_attend" id="yes" value="yes" {% if guest.will_attend == True %} checked {% endif %} onchange=on_will_attend(true) />
-            regretfully accept
-        </label>
-		<br/>
-        <label for="no">
-            <input type="radio" name="will_attend" id="no" value="no" {% if guest.will_attend == False %} checked {% endif %} onchange=on_will_attend(false) />
-            delightfully decline
-        </label>
-		</div>
+        {% if guest.will_attend != None %}
+        <div id="already_rsvped_message">
+            You have already RSVPed. You may alter your response below.
+        </div>
+        {% endif %}
+        <br>
+        <label>I will: </label><br>
+	    <div class="details">
+            <label for="yes">
+                <input type="radio" name="will_attend" id="yes" value="yes" {% if guest.will_attend == True %} checked {% endif %} onchange=on_attendance_change() required />
+                regretfully accept
+            </label>
+	        <br/>
+            <label for="no">
+                <input type="radio" name="will_attend" id="no" value="no" {% if guest.will_attend == False %} checked {% endif %} onchange=on_attendance_change() />
+                delightfully decline
+            </label>
+	    </div>
+
+        {% if guest.invited_to_brunch %}
+        <br>
+        <label>How about brunch the next day?</label><br>
+        <div class="details">
+            <label for="yes_brunch">
+                <input type="radio" name="will_attend_brunch" id="yes_brunch" value="yes" {% if guest.will_attend_brunch == True %} checked {% endif %} onchange=on_attendance_change() />
+                Of course, who doesn't love brunch?
+            </label>
+            <br>
+            <label for="no_brunch">
+                <input type="radio" name="will_attend_brunch" id="no_brunch" value="no" {% if guest.will_attend_brunch == False %} checked {% endif %} onchange=on_attendance_change() />
+                No, I'm too good for your silly brunch
+            </label>
+	    </div>
+        {% endif %}
+
+        {% if guest.invited_to_rehersal_dinner %}
+        <br>
+        <label>Will you be at the rehersal dinner?</label><br>
+        <div class="details">
+            <label for="yes_dinner">
+                <input type="radio" name="will_attend_rehersal_dinner" id="yes_dinner" value="yes" {% if guest.will_attend_rehersal_dinner == True %} checked {% endif %} onchange=on_attendance_change() />
+                Free dinner sounds good to me
+            </label>
+            <br>
+            <label for="no_dinner">
+                <input type="radio" name="will_attend_rehersal_dinner" id="no_dinner" value="no" {% if guest.will_attend_rehersal_dinner == False %} checked {% endif %} onchange=on_attendance_change() />
+                No thanks, I'm busy... uh... washing my hair
+            </label>
+	    </div>
+        {% endif %}
+		
     </fieldset>
     <fieldset id="rsvp_details" name="rsvp_details" {% if guest.will_attend != True %} style="visibility: hidden;" {% endif %} >
         <label for="number_of_guests">Number of guests:</label>
         <input type="textbox" name="number_of_guests" value={{ guest.number_of_guests }} />
+        <br>
         <label for="dietary_restrictions">Dietary restrictions:</label>
-        <input type="textarea" name="dietary_restrictions" value={{ guest.dietary_restrictions }} />
+        <input type="textarea" name="dietary_restrictions" value="{{ guest.dietary_restrictions }}" />
     </fieldset>
     <br>
     <br>
