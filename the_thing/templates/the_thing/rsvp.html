@@ -21,9 +21,9 @@
 {% block title %}RSVP{% endblock %}
 
 {% block content %}
-<h1>Welcome {{ guest.name }}</h1>
-
-<form class="pure-form" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
+<div id="content">
+<h3>Greetings, {{ guest.name }}</h3>
+<form class="rsvp" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
 {% csrf_token %}
     <fieldset>
         {% if guest.will_attend != None %}
@@ -32,7 +32,7 @@
         </div>
         {% endif %}
         <br>
-        <label>I will: </label><br>
+        <label>For the ceremony and reception, I will: </label><br>
 	    <div class="details">
             <label for="yes">
                 <input type="radio" name="will_attend" id="yes" value="yes" {% if guest.will_attend == True %} checked {% endif %} onchange=on_attendance_change() required />
@@ -63,7 +63,7 @@
 
         {% if guest.invited_to_rehersal_dinner %}
         <br>
-        <label>Will you be at the rehersal dinner?</label><br>
+        <label>Will you be at the rehearsal dinner?</label><br>
         <div class="details">
             <label for="yes_dinner">
                 <input type="radio" name="will_attend_rehersal_dinner" id="yes_dinner" value="yes" {% if guest.will_attend_rehersal_dinner == True %} checked {% endif %} onchange=on_attendance_change() />
@@ -87,7 +87,7 @@
     </fieldset>
     <br>
     <br>
-<input type="submit" value="Submit" class="pure-button"/>
+<input type="submit" value="Submit" class="submit-rsvp"/>
 </form>
-
+</div>
 {% endblock %}

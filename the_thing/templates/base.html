@@ -10,44 +10,39 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'the_thing/style.css' %}" />
 </head>
-
 <body>
 	<div class="header">
-		<div class="main-nav">
-			<ul>
-				<li><a href="{% url 'index' %}">Home</a></li>
-				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
-				<li><a href="">Event Details</a>
-				<ul>
-					<li><a href="{%url 'itinerary' %}">Itinerary</a></li>
-					<li><a href="{%url 'location' %}">Location</a></li>
-				</ul>
-				</li>
-				<li><a href="">Wedding Party</a>
-				<ul>
-					<li><a href="{%url 'wp_bride' %}">Bride's</a></li>
-					<li><a href="{%url 'wp_groom' %}">Groom's</a></li>
-				</ul>
-				</li>
-				<li><a href="">Area Info</a>
-				<ul>
-					<li><a href="{%url 'fairfield' %}">Fairfield County, CT</a></li>
-					<li><a href="{%url 'nyc' %}">NYC</a></li>
-				</ul>
-				</li>
-				<li><a href="{% url 'fun_stuff' %}">Fun</a>
-				</li>
-			</ul>
-		</div>
+	<div class="omni">Kevin Armstrong & Kayla Fang &bull; 09.27.2014 &bull; Ridgefield, CT</div>
 	</div> <!--end header -->
-	<br/>
 	<div id="wrapper">
 		
 			{% block content %}{% endblock %}
 		
 	</div> <!--end wrapper -->
 	<div class="footer">
-		<div class="omni">kevin armstrong & kayla fang &bull; 09.27.2014 &bull; ridgefield, ct</div>
+	<div class="main-nav">
+			<ul>
+				<li><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
+				<li><a href="">Event Details</a>
+				<ul>
+					<li><a href="{%url 'itinerary' %}">Ceremony & Reception</a></li>
+				</ul>
+				</li>
+				<li><a href="{%url 'wedding_party' %}">The Wedding Party</a>
+				</li>
+				<li><a href="">Area Info</a>
+				<ul>
+					<li><a href="{%url 'fairfield' %}">Fairfield County, CT</a></li>
+					<li><a href="{%url 'nyc' %}">New York City</a></li>
+				</ul>
+				</li>
+				<li><a href="{% url 'fun_stuff' %}">Fun</a>
+				</li>
+				<li><a href="">Honey Fund</a>
+				</li>
+			</ul>
+		</div>
 		<div class="copyright">
 		   &copy; Copyright {% now "Y" %} Kevin Armstrong and Kayla Fang. This site was built with love and Python.
 		 </div>

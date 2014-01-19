@@ -73,10 +73,7 @@ def location(request):
 def fun_stuff(request):
 	return _render_static_content(request, _get_calling_method_name())
 
-def wp_groom(request):
-	return _render_static_content(request, _get_calling_method_name())
-	
-def wp_bride(request):
+def wedding_party(request):
 	return _render_static_content(request, _get_calling_method_name())
 
 def _render_static_content(request, page_name):
