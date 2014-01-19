@@ -4,10 +4,13 @@ from the_thing import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^area_info/$', views.area_info, name='area_info'),
-	url(r'^wedding_party/$', views.wedding_party, name='wedding_party'),
+    url(r'^fairfield/$', views.fairfield, name='fairfield'),
+	url(r'^nyc/$', views.nyc, name='nyc'),
+	url(r'^wp_bride/$', views.wp_bride, name='wp_bride'),
+	url(r'^wp_groom/$', views.wp_groom, name='wp_groom'),
     url(r'^fun_stuff/$', views.fun_stuff, name='fun_stuff'),
-    url(r'^event_details/$', views.event_details, name='event_details'),
+    url(r'^location/$', views.location, name='location'),
+	url(r'^itinerary/$', views.itinerary, name='itinerary'),
     url(r'^rsvp/$', views.rsvp, name='rsvp'),
     url(r'^login/(?P<username>\w*)$', views.login, name='login'),
     

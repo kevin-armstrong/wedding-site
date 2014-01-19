@@ -9,7 +9,6 @@
     {% load staticfiles %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'the_thing/style.css' %}" />
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
 </head>
 
 <body>
@@ -18,20 +17,34 @@
 			<ul>
 				<li><a href="{% url 'index' %}">Home</a></li>
 				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
-				<li><a href="{% url 'event_details' %}">Event Details</a></li>
-				<li><a href="{% url 'wedding_party' %}">Wedding Party</a></li>
-				<li><a href="{% url 'area_info' %}">Area Info</a></li>
-				<li><a href="{% url 'fun_stuff' %}">Fun</a></li>
+				<li><a href="">Event Details</a>
+				<ul>
+					<li><a href="{%url 'itinerary' %}">Itinerary</a></li>
+					<li><a href="{%url 'location' %}">Location</a></li>
+				</ul>
+				</li>
+				<li><a href="">Wedding Party</a>
+				<ul>
+					<li><a href="{%url 'wp_bride' %}">Bride's</a></li>
+					<li><a href="{%url 'wp_groom' %}">Groom's</a></li>
+				</ul>
+				</li>
+				<li><a href="">Area Info</a>
+				<ul>
+					<li><a href="{%url 'fairfield' %}">Fairfield County, CT</a></li>
+					<li><a href="{%url 'nyc' %}">NYC</a></li>
+				</ul>
+				</li>
+				<li><a href="{% url 'fun_stuff' %}">Fun</a>
+				</li>
 			</ul>
 		</div>
 	</div> <!--end header -->
 	<br/>
 	<div id="wrapper">
 		
-		<div id="content">
 			{% block content %}{% endblock %}
 		
-		</div>
 	</div> <!--end wrapper -->
 	<div class="footer">
 		<div class="omni">kevin armstrong & kayla fang &bull; 09.27.2014 &bull; ridgefield, ct</div>

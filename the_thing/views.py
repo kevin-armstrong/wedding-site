@@ -52,16 +52,25 @@ def response(request, user_id):
         
     return HttpResponseRedirect(reverse('index'))
 
-def area_info(request):
+def fairfield(request):
 	return _render_static_content(request, _get_calling_method_name())
 
-def event_details(request):
+def nyc(request):
+	return _render_static_content(request, _get_calling_method_name())
+
+def itinerary(request):
+	return _render_static_content(request, _get_calling_method_name())
+
+def location(request):
 	return _render_static_content(request, _get_calling_method_name())
     
 def fun_stuff(request):
 	return _render_static_content(request, _get_calling_method_name())
 
-def wedding_party(request):
+def wp_groom(request):
+	return _render_static_content(request, _get_calling_method_name())
+	
+def wp_bride(request):
 	return _render_static_content(request, _get_calling_method_name())
 
 def _render_static_content(request, page_name):
