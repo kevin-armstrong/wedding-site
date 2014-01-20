@@ -45,8 +45,11 @@ div#wrapper {
 	min-height: 550px;
     width: 100%;
     padding: 0 0 0 0;
+	/* background-image:url('swatch.PNG'); */
 	background-color: #5C2B35;
-	border: 1px solid #382B35;
+	/* -moz-box-shadow: 2px 6px 5px gray;
+	-webkit-box-shadow: 2px 6px 5px gray;
+	box-shadow: 2px 6px 5px gray; */
 	opacity:0.9;
 	filter:alpha(opacity=90); /* For IE8 and earlier */
 }
