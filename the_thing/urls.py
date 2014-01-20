@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^fun_stuff/$', views.fun_stuff, name='fun_stuff'),
     url(r'^location/$', views.location, name='location'),
 	url(r'^itinerary/$', views.itinerary, name='itinerary'),
+	url(r'^brunch/$', views.brunch, name='brunch'),
+	url(r'^rehearsal/$', views.rehearsal, name='rehearsal'),
     url(r'^rsvp/$', views.rsvp, name='rsvp'),
     url(r'^login/(?P<username>\w*)$', views.login, name='login'),
     

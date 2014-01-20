@@ -67,6 +67,12 @@ def nyc(request):
 def itinerary(request):
 	return _render_static_content(request, _get_calling_method_name())
 
+def rehearsal(request):
+	return _render_static_content(request, _get_calling_method_name())
+
+def brunch(request):
+	return _render_static_content(request, _get_calling_method_name())
+
 def location(request):
 	return _render_static_content(request, _get_calling_method_name())
     
