@@ -289,6 +289,15 @@ input.submit-rsvp
 	padding: 10px 20px 10px 20px;
 }
 
+div.rsvp_details_label {
+    line-height: 4em;
+}
+
+label.rsvp_details_label  {
+    display: inline-block;
+    width: 160px;
+}
+
 input.submit-rsvp:hover
 {
 	background-color: gray;
