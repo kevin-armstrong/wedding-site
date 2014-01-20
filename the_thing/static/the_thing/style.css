@@ -115,8 +115,8 @@ div.footer {
 	width:100%;
 	padding: 0 0 0 0;
 	background-color: white;/*#5C2B35;*/
-	opacity:0.7;
-	filter:alpha(opacity=70); /* For IE8 and earlier */
+	opacity:0.9;
+	filter:alpha(opacity=90); /* For IE8 and earlier */
 	position:fixed;
 	bottom: 0px;
 	left: 0;
