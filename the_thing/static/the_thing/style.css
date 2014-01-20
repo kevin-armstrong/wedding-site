@@ -18,7 +18,7 @@ black #15191C
 body{
 	background-color:#C8C9BD;
 	background-image:url('bg3.PNG');
-	background-size:100%;
+	background-size:1600px;
 	background-attachment:fixed;
 	background-repeat: no-repeat;
 	font-family: traveling-typewriter;
@@ -106,7 +106,7 @@ div.header {
 }
 
 div.omni {
-	font-size: 2.5em;
+	font-size: 1.7em;
 }
 
 div.footer {
@@ -162,7 +162,7 @@ div.main-nav ul li a
 	text-transform:lowercase;
 	font-size: 0.8em;
 	font-weight: 100;
-	margin: 0 55px 0 55px;
+	margin: 0 25px 0 25px;
 	padding: 10px 0 10px 0;
 }
 
