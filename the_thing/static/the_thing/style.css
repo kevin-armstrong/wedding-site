@@ -27,6 +27,13 @@ body{
 	padding:0;
 }
 
+input[type="textbox"], textarea {
+		font-family: traveling-typewriter;
+		color: black;
+		width: 10em;
+		border: 1px solid black;
+ }
+
 a {
 	font-weight:bold;
 	color:#E5D1AC;
