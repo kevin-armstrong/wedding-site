@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Kevin & Kayla - 09.27.2014 - {{ page_title }}</title>
+    <title>Kevin & Kayla | 09.27.2014</title>
     {% block style %}{% endblock %}
     {% block script %}{% endblock %}
 
@@ -23,7 +23,6 @@
 	<div class="main-nav">
 			<ul>
 				<li><a href="{% url 'index' %}">Home</a></li>
-				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
 				<li><a href="">Event Details</a>
 				<ul>
 					<li><a href="{%url 'itinerary' %}">Ceremony & Reception</a></li>
@@ -31,6 +30,7 @@
 					<li><a href="{%url 'brunch' %}">Wedding Brunch</a></li>
 				</ul>
 				</li>
+				<li><a href="{% url 'rsvp' %}">RSVP</a></li>
 				<li><a href="{%url 'wedding_party' %}">The Wedding Party</a>
 				</li>
 				<li><a href="">Area Info</a>

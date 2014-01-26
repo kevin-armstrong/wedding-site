@@ -17,12 +17,12 @@ black #15191C
     
 body{
 	background-color:#C8C9BD;
-	background-image:url('bg3.png');
+	background-image:url('bg4.png');
 	background-size:1600px;
 	background-attachment:fixed;
 	background-repeat: no-repeat;
 	font-family: traveling-typewriter;
-	overflow:hidden;
+	/*overflow:hidden;*/
 	color: #C8C9BD;
 	padding:0;
 }
@@ -49,7 +49,7 @@ div#wrapper {
 	margin-left: auto;
 	margin-right: 0;
     max-width: 900px;
-	min-height: 550px;
+	min-height: 400px;
     width: 100%;
     padding: 0 0 0 0;
 	background-image:url('swatch.png'); 
