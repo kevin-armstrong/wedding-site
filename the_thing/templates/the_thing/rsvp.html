@@ -1,27 +1,11 @@
 {% extends 'base.html' %}
 
-{% block script %} 
-<script>
-    function on_attendance_change(){
-        var fieldset = document.forms.rsvp_form.rsvp_details;
-        if($('input[name = "will_attend"]:checked').val() == "yes" ||
-            $('input[name = "will_attend_brunch"]:checked').val() == "yes" ||
-            $('input[name = "will_attend_rehersal_dinner"]:checked').val() == "yes")
-        {
-            fieldset.style.visibility="visible";
-        }
-        else
-        {
-            fieldset.style.visibility="hidden";
-        }
-    }
-</script>
-{% endblock %}
-
 {% block title %}RSVP{% endblock %}
 
 {% block content %}
 <div id="content">
+<input id="attendee" name="AttendeeId" type="hidden" style="width:300px" value="" /> 
+
 <h3>Greetings, {{ guest.name }}</h3>
 <form class="rsvp" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
 {% csrf_token %}
@@ -90,4 +74,23 @@
 <input type="submit" value="Submit" class="submit-rsvp"/>
 </form>
 </div>
+{% endblock %}
+
+{% block script %} 
+<script>
+    function on_attendance_change(){
+        var fieldset = document.forms.rsvp_form.rsvp_details;
+        if($('input[name = "will_attend"]:checked').val() == "yes" ||
+            $('input[name = "will_attend_brunch"]:checked').val() == "yes" ||
+            $('input[name = "will_attend_rehersal_dinner"]:checked').val() == "yes")
+        {
+            fieldset.style.visibility="visible";
+        }
+        else
+        {
+            fieldset.style.visibility="hidden";
+        }
+    }
+
+</script>
 {% endblock %}

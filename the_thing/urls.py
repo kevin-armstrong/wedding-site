@@ -13,9 +13,9 @@ urlpatterns = patterns('',
 	url(r'^brunch/$', views.brunch, name='brunch'),
 	url(r'^rehearsal/$', views.rehearsal, name='rehearsal'),
     url(r'^rsvp/$', views.rsvp, name='rsvp'),
-    url(r'^login/(?P<username>\w*)$', views.login, name='login'),
-    
+    url(r'^login/$', views.login, name='login'),
     url(r'^logout$', views.logout, name='logout'),
-    url(r'^(?P<user_id>\d+)/response/$', views.response, name='response')
-    
+    url(r'^(?P<user_id>\d+)/response/$', views.response, name='response'),
+    url(r'^get_attendees$', views.get_attendees, name='get_attendees'),
+    url(r'^perform_login$', views.perform_login, name='perform_login')
 )

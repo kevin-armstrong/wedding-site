@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div id="content">
+<form class="login" id="login_form" name="login_form" action="{% url 'perform_login' %}" method="post">
+{% csrf_token %}
+<input id="attendee" name="login_id" type="hidden" style="width:300px" value="" /> 
+<input type="submit" value="Submit" class="submit-login"/>
+</form>
+</div>
+{% endblock %}
+
+{% block script %} 
+<script>
+    $(document).ready(function () {
+    
+        var pageSize = 20;
+        var attendeeUrl = "{% url 'get_attendees' %}";
+
+        $('#attendee').select2(
+        {
+            placeholder: 'Enter name',
+            //Does the user have to enter any data before sending the ajax request
+            minimumInputLength: 3,            
+            allowClear: true,
+            ajax: {
+                //How long the user has to pause their typing before sending the next request
+                quietMillis: 150,
+                //The url of the json service
+                url: attendeeUrl,
+                dataType: 'json',
+                //Our search term and what page we are on
+                data: function (term, page) {
+                    return {
+                        pageSize: pageSize,
+                        pageNum: page,
+                        searchTerm: term
+                    };
+                },
+                results: function (data, page) {
+                    //Used to determine whether or not there are more results available,
+                    //and if requests for more data should be sent in the infinite scrolling
+                    //var more = (page * pageSize) < data.Total; 
+                    return { results: data };
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+

@@ -3,6 +3,7 @@ from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
 from smtplib import SMTP_SSL
 import inspect, string
+import json
 
 from the_thing.models import Guest
 
@@ -13,24 +14,24 @@ def index(request):
     return _render_template(request, current_function_name, { 'all_guests': all_guests })
 
 def rsvp(request):
-    username = request.session.get('user','')
-    if username:
-        #TODO: probably improve the matching logic
-        guests = Guest.objects.filter(name__startswith=username)
-        if guests:
-            #TODO: only match one guest?
-            guest = guests[0]
-            current_function_name = _get_calling_method_name()
-            return _render_template(request, current_function_name, { 'guest': guest })
-    
+    user_id = request.session.get('user_id','')
+    if user_id:
+        guest = Guest.objects.get(id=user_id)
+        current_function_name = _get_calling_method_name()
+        return _render_template(request, current_function_name, { 'guest': guest })
+
     return _render_static_content(request, 'login_required')
 
-def login(request, username):
-    if username:
-        request.session['user'] = username
+def login(request):
+    current_function_name = _get_calling_method_name()
+    return _render_template(request, current_function_name, {})
+
+def perform_login(request):
+    user_id = request.POST['login_id']
+    request.session['user_id'] = user_id
  
     return HttpResponseRedirect(reverse('rsvp'))
-
+    
 def logout(request):
     request.session.clear()
     return _render_template(request, 'index', {})    
@@ -82,6 +83,12 @@ def fun_stuff(request):
 def wedding_party(request):
 	return _render_static_content(request, _get_calling_method_name())
 
+def get_attendees(request):
+    search_term = request.GET.get('searchTerm')
+    guest_names = list(map(lambda g: {"id": g.id, "text": g.name}, Guest.objects.filter(name__contains=search_term)))
+
+    return HttpResponse(json.dumps(guest_names), content_type="application/json")
+    
 def _render_static_content(request, page_name):
     return _render_template(request, page_name, {})
 
