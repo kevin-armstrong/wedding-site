@@ -4,11 +4,32 @@
 
 {% block content %}
 <div id="content">
+<h3>R&eacute;pondez s'il vous pla&icirc;t!</h3>
+<center><h4>(RSVP)</h4></center>
+<div class="details">
+<p>
+Type in your name below to RSVP<span class="accent">*</span> for your party.
+</p>
 <form class="login" id="login_form" name="login_form" action="{% url 'perform_login' %}" method="post">
 {% csrf_token %}
 <input id="attendee" name="login_id" type="hidden" style="width:300px" value="" /> 
-<input type="submit" value="Submit" class="submit-login"/>
+<input type="submit" value="That's me!"  class="submit-rsvp"/>
 </form>
+<br/>
+<br/>
+<p>
+Can't find your name? Email <a href="mailto:kfang87@gmail.com">our support team</a> for help.
+</p>
+<p>
+<img src="http://icongal.com/gallery/image/127494/owl_harry_potter_bird_mail_hedwig_animal_fly.png" title="source: http://icongal.com" width="100" class="left"/>
+<span class="small accent">
+<br/>
+<br/>
+<br/>
+<br/>
+* Please consider how much time, paper, fuel and lives you save by sending your RSVP online instead of regular post. The owls thank you.</span>
+</p>
+</div>
 </div>
 {% endblock %}
 
