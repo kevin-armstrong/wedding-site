@@ -20,7 +20,7 @@ def rsvp(request):
         current_function_name = _get_calling_method_name()
         return _render_template(request, current_function_name, { 'guest': guest })
 
-    return _render_static_content(request, 'login_required')
+    return _render_template(request, 'login', {})
 
 def login(request):
     current_function_name = _get_calling_method_name()
