@@ -85,7 +85,13 @@ def wedding_party(request):
 
 def get_attendees(request):
     search_term = request.GET.get('searchTerm')
-    guest_names = list(map(lambda g: {"id": g.id, "text": g.name}, Guest.objects.filter(name__contains=search_term)))
+    
+    guests = Guest.objects.all()
+    search_terms = search_term.split(' ')
+    for term in search_terms:
+        guests = guests.filter(name__iregex=r"\b" + term)
+    
+    guest_names = list(map(lambda g: {"id": g.id, "text": g.name}, guests))
 
     return HttpResponse(json.dumps(guest_names), content_type="application/json")
     
