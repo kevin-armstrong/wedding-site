@@ -7,6 +7,9 @@
 <input id="attendee" name="AttendeeId" type="hidden" style="width:300px" value="" /> 
 
 <h3>Greetings, {{ guest.name }}</h3>
+
+<div class=logout_link><a href="{% url 'logout' %}">(Not {{ guest.name }}? Click to log out)</a></div>
+
 <form class="rsvp" id="rsvp_form" name="rsvp_form" action="{% url 'response' guest.id %}" method="post">
 {% csrf_token %}
     <fieldset>

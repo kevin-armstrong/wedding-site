@@ -309,3 +309,9 @@ input.submit-rsvp:hover
 {
 	background-color: gray;
 }
+
+div.logout_link
+{
+    text-align: center;
+    font-size: .8em;
+}
