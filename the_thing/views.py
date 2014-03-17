@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
 from smtplib import SMTP_SSL
+from django.db.models import Q
 import inspect, string
 import json
 
@@ -86,11 +87,20 @@ def wedding_party(request):
 def get_attendees(request):
     search_term = request.GET.get('searchTerm')
     
+    # Trying slightly to not expose all attendees -- the last search term (first when reversed) should be the start of a word; other
+    # terms should be full word matches. 
     guests = Guest.objects.all()
     search_terms = search_term.split(' ')
-    for term in search_terms:
-        guests = guests.filter(name__iregex=r"\b" + term)
+    search_terms.reverse()
     
+    first = True
+    for term in search_terms:
+        if first:
+            guests = guests.filter(Q(name__icontains = " " + term) | Q(name__istartswith = term) | Q(name__iendswith = " " + term ))
+            first = False
+        else:
+            guests = guests.filter(Q(name__icontains = " " + term + " ") | Q(name__istartswith = term + " ") | Q(name__iendswith = " " + term ))
+
     guest_names = list(map(lambda g: {"id": g.id, "text": g.name}, guests))
 
     return HttpResponse(json.dumps(guest_names), content_type="application/json")
