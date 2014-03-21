@@ -62,10 +62,10 @@ def response(request, user_id):
     guest.save()
     
     _send_email_notification(guest)
-    
-    if guest.name == "Tim Miller":
+
+    if guest.name.startswith("Tim") and guest.name.endswith("Miller"):
         return HttpResponseRedirect('http://www.youtube.com/watch?v=dQw4w9WgXcQ')
-        
+
     return HttpResponseRedirect(reverse('index'))
 
 def fairfield(request):
