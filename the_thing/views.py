@@ -5,14 +5,23 @@ from smtplib import SMTP_SSL
 from django.db.models import Q
 import inspect, string
 import json
+import logging
+import sys
 
 from the_thing.models import Guest
 
+logger = logging.getLogger("wedding_site")
+
 def index(request):
-    all_guests = Guest.objects.all()
+    logger.info('entering index')
+    try:
+        remote_address = request.META.get('REMOTE_ADDR')
+        logger.info('request is from address ' + remote_address)
+    except Exception as e:
+        logger.error("Unexpected error: " + str(type(e)) + ": " + str(e))
+
     current_function_name = _get_calling_method_name()
-    
-    return _render_template(request, current_function_name, { 'all_guests': all_guests })
+    return _render_template(request, current_function_name, { })
 
 def rsvp(request):
     user_id = request.session.get('user_id','')
@@ -35,7 +44,7 @@ def perform_login(request):
     
 def logout(request):
     request.session.clear()
-    return _render_template(request, 'index', {})    
+    return _render_template(request, 'login', {})    
 
 def response(request, user_id):
     guest = Guest.objects.get(id=user_id)
@@ -52,8 +61,7 @@ def response(request, user_id):
     guest.dietary_restrictions = request.POST['dietary_restrictions']
     guest.save()
     
-    #uncomment in production
-    #_send_email_notification(guest)
+    _send_email_notification(guest)
     
     if guest.name == "Tim Miller":
         return HttpResponseRedirect('http://www.youtube.com/watch?v=dQw4w9WgXcQ')
@@ -123,19 +131,23 @@ def _get_calling_method_name():
     return inspect.stack()[1][3]
 	
 def _send_email_notification(guest):
-    smtp_server_name = "smtp.gmail.com"
-    smtp_username = "theshortestnameavailable@gmail.com"
-    smtp_password = "W3dding_"
-    
-    to_address = "kevin.t.armstrong@gmail.com"
-    message = _make_message(guest)
-    smtp_server = SMTP_SSL(smtp_server_name)
-    smtp_server.login(smtp_username, smtp_password)
-    smtp_server.sendmail("from", to_address, message)
-    smtp_server.quit()
-    
+    try:
+        smtp_server_name = "smtp.gmail.com"
+        smtp_username = "theshortestnameavailable@gmail.com"
+        smtp_password = "W3dding_"
+        
+        to_address = "kevin.t.armstrong@gmail.com"
+        message = _make_message(guest)
+        logger.info("Attempting to send message: " + message)
+
+        smtp_server = SMTP_SSL(smtp_server_name)
+        smtp_server.login(smtp_username, smtp_password)
+        smtp_server.sendmail("from", to_address, message)
+        smtp_server.quit()
+    except Exception as e:
+        logger.error("Unexpected error: " + str(type(e)) + ": " + str(e))
     return
-    
+
 def _make_message(guest):
     response = "yes" if guest.will_attend else "no"
     message_body = guest.name + " just RSVPed " + response + ", with " + guest.number_of_guests + " guests. Dietary restrictions: " + guest.dietary_restrictions

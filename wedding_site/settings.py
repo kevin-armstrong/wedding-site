@@ -14,10 +14,13 @@ MANAGERS = ADMINS
 
 if(environment == "production"):
     databasePathPrefix = '/home/ubuntu/webroot/wedding_site/'
+    loggingPath = '/var/log/wedding_site/log.txt'
 elif(platform.system() == "Windows"):
     databasePathPrefix = 'c:/code/wedding_site/'
+    loggingPath = 'c:/temp/log.txt'
 else:
     databasePathPrefix = ''
+    loggingPath = '/var/log/wedding_site/log.txt'
     
 DATABASES = {
     'default': {
@@ -150,11 +153,26 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': loggingPath,
+            'formatter': 'verbose'
         }
     },
     'loggers': {
@@ -163,5 +181,9 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'wedding_site': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        }
     }
 }
