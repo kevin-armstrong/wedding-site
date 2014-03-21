@@ -140,10 +140,10 @@ def _send_email_notification(guest):
         message = _make_message(guest)
         logger.info("Attempting to send message: " + message)
 
-        smtp_server = SMTP_SSL(smtp_server_name)
-        smtp_server.login(smtp_username, smtp_password)
-        smtp_server.sendmail("from", to_address, message)
-        smtp_server.quit()
+        #smtp_server = SMTP_SSL(smtp_server_name)
+        #smtp_server.login(smtp_username, smtp_password)
+        #smtp_server.sendmail("from", to_address, message)
+        #smtp_server.quit()
     except Exception as e:
         logger.error("Unexpected error: " + str(type(e)) + ": " + str(e))
     return
