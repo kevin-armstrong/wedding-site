@@ -67,7 +67,7 @@
     </fieldset>
     <fieldset id="rsvp_details" name="rsvp_details" {% if guest.will_attend != True %} style="visibility: hidden;" {% endif %} >
         <div class="rsvp_details_label">
-            <label class="rsvp_details_label" for="number_of_guests">Number of guests:<span class="accent">*</span></label>
+            <label class="rsvp_details_label" for="number_of_guests">Number of attendees (including you):<span class="accent">*</span></label>
             <input type="textbox" size="30" name="number_of_guests" value={{ guest.number_of_guests }} />
         </div>
         <div class="rsvp_details_label">

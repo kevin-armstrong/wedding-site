@@ -39,6 +39,7 @@ def login(request):
 def perform_login(request):
     user_id = request.POST['login_id']
     request.session['user_id'] = user_id
+    logger.info("Login for user id " + user_id)
  
     return HttpResponseRedirect(reverse('rsvp'))
     
