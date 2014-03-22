@@ -301,8 +301,13 @@ div.rsvp_details_label {
 }
 
 label.rsvp_details_label  {
+    vertical-align: top;
     display: inline-block;
-    width: 160px;
+    width: 280px;
+}
+
+textarea.dietary_restrictions_textarea {
+    width: 300px;
 }
 
 input.submit-rsvp:hover
