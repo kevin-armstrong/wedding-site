@@ -64,6 +64,8 @@ class Command(NoArgsCommand):
             Guest(name ="Andrew Armstrong", invited_to_brunch = True, invited_to_rehersal_dinner = True),
             Guest(name ="Reed Armstrong", invited_to_brunch = True, invited_to_rehersal_dinner = True),
             Guest(name ="Dr. & Mrs. Walter R. Graham", invited_to_brunch = True, invited_to_rehersal_dinner = True),
+            Guest(name ="Earl & Ann Teachey", invited_to_brunch = True, invited_to_rehersal_dinner = True),
+            Guest(name ="Dr. Angela Teachey", invited_to_brunch = True, invited_to_rehersal_dinner = True),
         ]
 
         already_imported_guests = 0
