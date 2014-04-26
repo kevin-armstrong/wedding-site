@@ -33,16 +33,13 @@ def rsvp(request):
     return _render_template(request, 'login', {})
 
 def view_guests(request):
-    user_id = request.session.get('user_id','')
-    if user_id:
-        guestlist = Guest.objects.all()
-        total_guests = Guest.objects.filter(will_attend='True').aggregate(Sum('number_of_guests'))
-        total_brunch = Guest.objects.filter(will_attend_brunch='True').aggregate(Sum('number_of_guests'))
-        total_rehearsal = Guest.objects.filter(will_attend_rehersal_dinner='True').aggregate(Sum('number_of_guests'))
-        current_function_name = _get_calling_method_name()
-        return _render_template(request, current_function_name, { 'guestlist': guestlist , 'total_guests' : total_guests['number_of_guests__sum'],'total_brunch' : total_brunch['number_of_guests__sum'],'total_rehearsal' : total_rehearsal['number_of_guests__sum'] })
-
-    return _render_template(request, 'login', {})
+    guestlist = Guest.objects.all()
+    total_guests = Guest.objects.filter(will_attend='True').aggregate(Sum('number_of_guests'))
+    total_brunch = Guest.objects.filter(will_attend_brunch='True').aggregate(Sum('number_of_guests'))
+    total_rehearsal = Guest.objects.filter(will_attend_rehersal_dinner='True').aggregate(Sum('number_of_guests'))
+    current_function_name = _get_calling_method_name()
+    
+    return _render_template(request, current_function_name, { 'guestlist': guestlist , 'total_guests' : total_guests['number_of_guests__sum'],'total_brunch' : total_brunch['number_of_guests__sum'],'total_rehearsal' : total_rehearsal['number_of_guests__sum'] })
 		
 def login(request):
     current_function_name = _get_calling_method_name()
