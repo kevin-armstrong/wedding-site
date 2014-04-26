@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}View Guests{% endblock %}
+
+{% block content %}
+<h3>View Guests</h3>
+<p>Total number of guests who have RSVP'd YES: {{total_guests}}</p>
+<p>Total number of guests for BRUNCH: {{total_brunch}}</p>
+<p>Total number of guests for REHEARSAL: {{total_rehearsal}}</p>
+<br/>
+<table class="admin">
+	<thead>
+		<th>Party Name</th>
+		<th>#</th>
+		<th>Ceremony</th>
+		<th>Rehearsal</th>
+		<th>Brunch</th>
+		<th>Dietary Restrictions</th>
+	</thead>
+{% for guest in guestlist %}
+	<tr>
+		<td>{{guest.name}}</td>
+		<td>{{guest.number_of_guests}}</td>
+		<td>{{guest.will_attend}}</td>
+		<td>{{guest.will_attend_rehersal_dinner}}</td>
+		<td>{{guest.will_attend_brunch}}</td>
+		<td>{{guest.dietary_restrictions}}</td>
+	</tr>
+{% endfor %}
+</div>
+<br/>
+{% endblock %}

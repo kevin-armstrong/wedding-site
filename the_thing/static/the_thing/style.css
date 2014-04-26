@@ -320,3 +320,17 @@ div.logout_link
     text-align: center;
     font-size: .8em;
 }
+
+table.admin
+{
+	padding: 20px 20px 20px 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	font-size: 0.9em;
+}
+table.admin td, table.admin th
+{
+	border: 1px solid gray;
+	padding: 0 10px 0 10px;
+}
