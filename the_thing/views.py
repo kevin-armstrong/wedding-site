@@ -33,14 +33,16 @@ def rsvp(request):
     return _render_template(request, 'login', {})
 
 def view_guests(request):
-    guestlist = Guest.objects.all()
+    guestlist = Guest.objects.filter(will_attend=True)
+    declinelist = Guest.objects.filter(will_attend=False)
+    slackers = Guest.objects.filter(will_attend=None)
     total_guests = Guest.objects.filter(will_attend=True).aggregate(Sum('number_of_guests'))
     total_brunch = Guest.objects.filter(will_attend_brunch=True).aggregate(Sum('number_of_guests'))
     total_rehearsal = Guest.objects.filter(will_attend_rehersal_dinner=True).aggregate(Sum('number_of_guests'))
     total_unresponded = Guest.objects.filter(will_attend=None).count()
     current_function_name = _get_calling_method_name()
     
-    return _render_template(request, current_function_name, { 'guestlist': guestlist , 'total_guests' : total_guests['number_of_guests__sum'],'total_brunch' : total_brunch['number_of_guests__sum'],'total_rehearsal' : total_rehearsal['number_of_guests__sum'],'total_unresponded' : total_unresponded })
+    return _render_template(request, current_function_name, { 'guestlist': guestlist , 'declinelist' : declinelist , 'slackers' : slackers ,  'total_guests' : total_guests['number_of_guests__sum'],'total_brunch' : total_brunch['number_of_guests__sum'],'total_rehearsal' : total_rehearsal['number_of_guests__sum'],'total_unresponded' : total_unresponded })
 		
 def login(request):
     current_function_name = _get_calling_method_name()

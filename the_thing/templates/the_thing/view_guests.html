@@ -10,6 +10,7 @@
 <br />
 <p>Total number of parties that have not responded: {{total_unresponded}}</p>
 <br/>
+<h3>Accepted</h3>
 <table class="admin">
 	<thead>
 		<th>Party Name</th>
@@ -29,6 +30,51 @@
 		<td>{{guest.dietary_restrictions}}</td>
 	</tr>
 {% endfor %}
+</table>
+
+<h3>Declined</h3>
+<table class="admin">
+	<thead>
+		<th>Party Name</th>
+		<th>#</th>
+		<th>Ceremony</th>
+		<th>Rehearsal</th>
+		<th>Brunch</th>
+		<th>Dietary Restrictions</th>
+	</thead>
+{% for guest in declinelist %}
+	<tr>
+		<td>{{guest.name}}</td>
+		<td>{{guest.number_of_guests}}</td>
+		<td>{{guest.will_attend}}</td>
+		<td>{{guest.will_attend_rehersal_dinner}}</td>
+		<td>{{guest.will_attend_brunch}}</td>
+		<td>{{guest.dietary_restrictions}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<h3>Not yet responded</h3>
+<table class="admin">
+	<thead>
+		<th>Party Name</th>
+		<th>#</th>
+		<th>Ceremony</th>
+		<th>Rehearsal</th>
+		<th>Brunch</th>
+		<th>Dietary Restrictions</th>
+	</thead>
+{% for guest in slackers %}
+	<tr>
+		<td>{{guest.name}}</td>
+		<td>{{guest.number_of_guests}}</td>
+		<td>{{guest.will_attend}}</td>
+		<td>{{guest.will_attend_rehersal_dinner}}</td>
+		<td>{{guest.will_attend_brunch}}</td>
+		<td>{{guest.dietary_restrictions}}</td>
+	</tr>
+{% endfor %}
+</table>
 </div>
 <br/>
 {% endblock %}
